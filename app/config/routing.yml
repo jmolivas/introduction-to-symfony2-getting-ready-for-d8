@@ -1,0 +1,4 @@
+
+firstbundle:
+    resource: "@FirstBundle/Resources/config/routing.yml"
+    prefix:   /
