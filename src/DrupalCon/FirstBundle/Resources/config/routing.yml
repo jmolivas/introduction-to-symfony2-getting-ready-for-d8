@@ -2,3 +2,11 @@
 hello_plain:
     path:     /
     defaults: { _controller: FirstBundle:Hello:index }
+
+hello_template:
+    path:     /template
+    defaults: { _controller: FirstBundle:Hello:template }
+
+hello_name:
+    path:     /hello/{name}/{times}
+    defaults: { _controller: FirstBundle:Hello:hello, times: 1 }
