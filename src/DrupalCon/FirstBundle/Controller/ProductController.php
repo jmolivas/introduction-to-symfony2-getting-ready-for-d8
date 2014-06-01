@@ -2,6 +2,7 @@
 
 namespace DrupalCon\FirstBundle\Controller;
 
+use DrupalCon\FirstBundle\Service\ProductSerializer;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -117,12 +118,8 @@ class ProductController extends Controller
             throw $this->createNotFoundException('Unable to find Product entity.');
         }
 
-        $data = array(
-            'id' => $product->getId(),
-            'name' => $product->getName(),
-            'price' => $product->getPrice(),
-        );
-        $json = json_encode($data);
+        $productSerializer = new ProductSerializer();
+        $json = $productSerializer->serialize($product);
 
         return new Response($json);
     }
