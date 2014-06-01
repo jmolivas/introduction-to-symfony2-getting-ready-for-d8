@@ -5,7 +5,7 @@ imports:
 services:
     product_serializer:
         class: DrupalCon\FirstBundle\Service\ProductSerializer
-        arguments: []
+        arguments: ["@router"]
 
 framework:
     #esi:             ~
