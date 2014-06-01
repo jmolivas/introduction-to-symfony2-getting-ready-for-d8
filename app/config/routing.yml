@@ -2,3 +2,7 @@
 firstbundle:
     resource: "@FirstBundle/Resources/config/routing.yml"
     prefix:   /
+
+firstbundle_product:
+    resource: "@FirstBundle/Controller"
+    type:      annotation
