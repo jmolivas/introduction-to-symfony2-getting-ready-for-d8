@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use DrupalCon\FirstBundle\Entity\Product;
 use DrupalCon\FirstBundle\Form\ProductType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Product controller.
@@ -97,6 +98,33 @@ class ProductController extends Controller
             'entity' => $entity,
             'form'   => $form->createView(),
         );
+    }
+
+    /**
+     * Finds and displays a Product entity.
+     *
+     * @Route("/{id}.json", name="product_show_json")
+     * @Method("GET")
+     */
+    public function showJsonAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        /** @var Product $entity */
+        $entity = $em->getRepository('FirstBundle:Product')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Product entity.');
+        }
+
+        $data = array(
+            'id' => $entity->getId(),
+            'name' => $entity->getName(),
+            'price' => $entity->getPrice(),
+        );
+        $json = json_encode($data);
+
+        return new Response($json);
     }
 
     /**
