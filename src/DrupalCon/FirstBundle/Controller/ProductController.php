@@ -110,17 +110,17 @@ class ProductController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        /** @var Product $entity */
-        $entity = $em->getRepository('FirstBundle:Product')->find($id);
+        /** @var Product $product */
+        $product = $em->getRepository('FirstBundle:Product')->find($id);
 
-        if (!$entity) {
+        if (!$product) {
             throw $this->createNotFoundException('Unable to find Product entity.');
         }
 
         $data = array(
-            'id' => $entity->getId(),
-            'name' => $entity->getName(),
-            'price' => $entity->getPrice(),
+            'id' => $product->getId(),
+            'name' => $product->getName(),
+            'price' => $product->getPrice(),
         );
         $json = json_encode($data);
 
