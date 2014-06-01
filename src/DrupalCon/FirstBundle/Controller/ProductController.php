@@ -118,7 +118,7 @@ class ProductController extends Controller
             throw $this->createNotFoundException('Unable to find Product entity.');
         }
 
-        $productSerializer = new ProductSerializer();
+        $productSerializer = $this->container->get('product_serializer');
         $json = $productSerializer->serialize($product);
 
         return new Response($json);

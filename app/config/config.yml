@@ -2,6 +2,11 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
 
+services:
+    product_serializer:
+        class: DrupalCon\FirstBundle\Service\ProductSerializer
+        arguments: []
+
 framework:
     #esi:             ~
     #translator:      { fallback: "%locale%" }
