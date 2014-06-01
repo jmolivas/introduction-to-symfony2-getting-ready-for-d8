@@ -2,6 +2,7 @@ Introduction to Symfony2: Getting Ready for D8
 ========================
 
 Step 1
+
   We have to make sure we have a working "lamp" environment
   Lamp = Linux, Apache, Mysql, Php
   for the Mac there's
