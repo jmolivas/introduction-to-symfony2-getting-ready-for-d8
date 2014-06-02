@@ -1,112 +1,94 @@
 Introduction to Symfony2: Getting Ready for D8
 ========================
 
-Step 1
+## Step 1: Install Git
 
-  We have to make sure we have a working "lamp" environment
-  Lamp = Linux, Apache, Mysql, Php
-  for the Mac there's
-  MAMP at http://www.mamp.info/en/ or  php-osx at http://php-osx.liip.ch/
-  For Windows there's 
-  XAMPP at http://php-osx.liip.ch/, WAMP at http://www.wampserver.com/en/, AMPPS at http://www.ampps.com/
-  for Linux
-  Install Apache, Mysql and Php with your package manager or AMPPS at http://www.ampps.com/
-  OR
-  Use a VirtualMachine! We have one setup - see VM Environment
-  
-  Whichever environment you choose, make sure you have the following:
+Git is used to checkout and interact with this training repository. You should be able to execute the 'git' command from your command-line interface.
 
-A) PHP 5.3.3 or higher (very important!)
-B) MySQL server that is configured to work with PHP
-C) A web server (If you have PHP 5.4 or higher, you don’t even need this)
+See [GitHub's Setup Documentation](https://help.github.com/articles/set-up-git).
 
-If you are running a local Lamp environement, you will need to also set a local domain for your browser to make requests of
-under linux the hosts file is at /etc/hosts
-under Mac OSX it's /etc/hosts as well but it's a symlink from /private/etc/hosts
-under Windows it's usually under C:\Windows\system32\drivers\etc\hosts and the only problem with this is you will have to
-have administrator rights to edit this file, on Linux and the Mac you will have to either open it with
-$> sudo nano /etc/hosts
-or simply authenticate once you try to save the file
+## Step 2: Install *AMP Stack
 
-a hosts entry looks like
-127.0.0.1  mylocal.dev
-so that it short circuits the dns lookup and tells the browser to request a response from your machine instead of going out to
-the master dns servers and returning a domain not found page
+Setup a working AMP (Apache, MySQL, PHP) stack that satisfies these minimum requirements:
 
-there is a neat utility in Ruby for Linux and the Mac you could use to edit your hists file automatically
-called Ghost at https://github.com/bjeanes/ghost 
+* PHP 5.3.3 or higher (PHP 5.4+ recommended)
+* A web server: either Apache or the server built into PHP 5.4+.
 
-Step 2
-  Make sure git is installed and can be run at the command line by simply typing "git". Of course, GitHub has an awesome resource on how to install git:
+Several pre-packaged installers are available, as well as compelling virtual machine and cloud-based options. Some of these options are listed here:
 
-  https://help.github.com/articles/set-up-git eplains how to get git setup and http://git-scm.com/downloads
-  get you the download of the git software appropriate to your environment
+### *AMP Installers
 
-  
-Aside
-  Using a VM Environment: 
+* __Multi-platform__: [XAMPP](https://www.apachefriends.org), [AMPPS](http://www.ampps.com)
+* __OS X__: [MAMP](http://www.mamp.info/en), [php-osx](http://php-osx.liip.ch)
+* __Windows__: [WAMP](http://www.wampserver.com/en)
+* __Linux__: _Use your Linux distribution's package manager to install Apache, MySQL, and PHP._
 
-If you want to avoid setting up your *AMP manually, consider setting up a Virtual Machine.
-Though you can build your own, we recommend using this one: https://drupal.org/project/vm 
+### Nitrous.io
 
-You will need to have Git, VirtualBox and Vagrant installed first.:
-Git
-Vagrant 
-VirtualBox
+[Nitrous.io](http://nitrous.io) is a cloud-based development environment that offers a __free trial__ which should be sufficient to complete the activities in this training.
 
-After you’ve met the requirements for the Virtual Machine:
+### Vagrant
 
-1) Clone the Virtual Machine project
+[Vagrant](http://www.vagrantup.com/) is a cross-platform tool for standardizing and automating the management of virtual machines.
 
-$> git clone --branch master http://git.drupal.org/project/vm.git symfony.dev
+1. [Install VirtualBox](https://www.virtualbox.org/wiki/Downloads)
+2. [Install Vagrant](http://docs.vagrantup.com/v2/installation/)
+3. Obtain a suitable Vagrant box (_an example is suggested in the following comand_)
 
-If you want to make some adjustment to the VM configuration copy the parameters.yml.dist file and update the values
+        $ git clone -–branch master http://git.drupal.org/project/vm.git symfony.dev
 
-$> cp parameters.yml.dist parameters.yml
+4. Adjust virtual machine parameters as needed:
 
-2) Boot up the machine
+        $ cp parameters.yml.dist parameters.yml
 
-$> cd symfony.dev
-$> vagrant up
-  
-Step 3
-  we will need to have composer installed to install symfony and it's components
-  Download and install composer from
-  https://getcomposer.org/download/
-  follow the appropriate instructions according to your needs
-Step 4
-  Clone this repo into a subdirectory of your web directory (my webroot is at
-  /var/www and my sub is symfony, so /var/www/symfony) and setup a host in your host file
-  and an apache config that points the docroot you created plus /web
-  my apache vhosts entry looks like this
-  
-  <VirtualHost *:80>
-    ServerAdmin wes@wess.air
-    DocumentRoot "/var/www/symfony/web"
-    ServerName symfony.air
-    ServerAlias symfony.air
-    <Directory "/var/www/symfony/web">
-        AllowOverride All
-        Options All
-        Order allow,deny
-        Allow from all
-    </Directory>
-    ErrorLog "/private/var/log/apache2/symfony.air-error_log"
-    CustomLog "/private/var/log/apache2/symfony.air-access_log" combined
-</VirtualHost>
+5. Boot the machine
 
-you can copy and paste this adjusting the paths to match what you've created
-OR
-php app/console server:run will automatically create an running server for you and will provide you the proper url to go to in you browser
-and you don't have to deal with apache or hosts configs
+        $ vagrant up
 
-Step 5
-  in the terminal
-  $> git clone https://github.com/jmolivas/introduction-to-symfony2-getting-ready-for-d8.git /your/web/path/symfony
+## Step 3: Install Composer
 
-  the repo has multiple branches to help facilitate the steps we will follow
-  Once we have the repo cloned, in the terminal (if you have installed git for windows, it has a terminal) 
-  navigate to your symfony directory
-  cd /var/www/symfony/
-   launch composer and it will get symfony for use based on the entries in composer.json
+[Composer](https://getcomposer.org/) is a tool for managing dependencies for PHP projects.
+
+Follow the [directions](https://getcomposer.org/download/) on the Composer site for installation.
+
+## Step 4: Clone Training Repository
+
+Clone this repo into a subdirectory of your web document root.
+
+    $ git clone https://github.com/jmolivas/introduction-to-symfony2-getting-ready-for-d8.git training
+
+## Step 5: Initialize Symfony
+
+Change into the training directory you created in the previous step, then initialize Symfony with Composer:
+
+    $ cd training
+    $ composer install
+
+You will be prompted for several configuration settings. In each case, you may just press enter to accept the default value.
+
+## Step 6: Confirm Your Setup
+
+Symfony includes a script to confirm your setup can run Symfony successfully. You can run this from the command line:
+
+    $ php app/check.php
+
+The output of `check.php` will indicate if there are any errors with your environment and how they may impact your ability to use Symfony.
+
+## Step 7: Run The Development Server
+
+PHP 5.4+ includes a local server that is ideal for local development. To run it, make sure you are in the training directory and execute the following command:
+
+    $ php app/console server:run
+
+If you point your browser at `http://localhost:8000`, you should see a "Welcome!" page generated by Symfony.
+
+__Note:__ _The URL you use may be different if you are using a Virtual Machine (Vagrant) or a cloud-based development environment (Nitrous.io)._
+
+## Step 8: Use the Training Material!
+
+This repository includes branches that correspond with the main phases of the training session. If you wish to skip to a step, you may switch branches with:
+
+    $ git checkout -f <branch>
+
+__Note:__ _The "-f" discards any changes you have made to the code!_
   
