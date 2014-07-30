@@ -21,11 +21,10 @@ class HelloController extends Controller
   /**
    * @Template()
    */
-  public function helloAction($name, $times)
+  public function helloAction($name)
   {
     return [
-      'name'=>$name,
-      'times' => $times
+      'name'=>$name
     ];
   }
 }

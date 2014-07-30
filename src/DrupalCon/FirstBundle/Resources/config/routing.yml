@@ -8,5 +8,5 @@ hello_template:
     defaults: { _controller: FirstBundle:Hello:template }
 
 hello_name:
-    path:     /hello/{name}/{times}
-    defaults: { _controller: FirstBundle:Hello:hello, times: 1 }
+    path:     /hello/{name}
+    defaults: { _controller: FirstBundle:Hello:hello }

@@ -3,10 +3,6 @@
 {% block title %}Render Template & pass paramaters.{% endblock %}
 
 {% block body %}
-    <h1>You passed some parameters to this page</h1>
-    <ul>
-    {% for time in 1..times %}
-        <li>Hello: <strong>{{name}}</strong></li>
-    {% endfor %}
-    </ul>
+    <h1>You just successfully passed some parameters to this page</h1>
+    Hello: <strong>{{name}}</strong>
 {% endblock %}
