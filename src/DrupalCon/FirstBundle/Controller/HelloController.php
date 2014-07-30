@@ -21,7 +21,7 @@ class HelloController extends Controller
   /**
    * @Template()
    */
-  public function helloAction($name)
+  public function nameAction($name)
   {
     return [
       'name'=>$name

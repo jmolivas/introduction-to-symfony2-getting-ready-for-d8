@@ -9,4 +9,4 @@ hello_template:
 
 hello_name:
     path:     /hello/{name}
-    defaults: { _controller: FirstBundle:Hello:hello }
+    defaults: { _controller: FirstBundle:Hello:name }
