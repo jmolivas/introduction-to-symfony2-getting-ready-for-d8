@@ -124,7 +124,11 @@ class ProductController extends Controller
         );
         $json = json_encode($data);
 
-        return new Response($json);
+        $response = new Response();
+        $response->setContent($json);
+        $response->headers->set('Content-Type', 'application/json');
+
+        return $response;
     }
 
     /**
