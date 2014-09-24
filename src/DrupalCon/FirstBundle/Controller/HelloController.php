@@ -2,7 +2,6 @@
 
 namespace DrupalCon\FirstBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -18,13 +17,11 @@ class HelloController extends Controller
     return $this->render('FirstBundle:Hello:template.html.twig');
   }
 
-  /**
-   * @Template()
-   */
   public function nameAction($name)
   {
-    return [
-      'name'=>$name
-    ];
+    return $this->render(
+      'FirstBundle:Hello:name.html.twig',
+      [ 'name' => $name ]
+    );
   }
 }
